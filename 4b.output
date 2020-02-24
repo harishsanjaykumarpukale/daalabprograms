@@ -1,0 +1,17 @@
+Enter no. of vertices:4                                                                                                                       
+Enter adjacency matrix:                                                                                                                       
+0 1 0 0                                                                                                                                       
+0 0 1 0                                                                                                                                       
+0 0 0 1                                                                                                                                       
+0 1 0 0                                                                                                                                       
+Cycle Detected.Topological sort not possible
+
+
+Enter no. of vertices:5                                                                                                                       
+Enter adjacency matrix:                                                                                                                       
+0 1 1 0 0                                                                                                                                     
+0 0 1 1 0                                                                                                                                     
+0 0 0 1 1                                                                                                                                     
+0 0 0 0 0                                                                                                                                     
+0 0 0 0 0                                                                                                                                     
+Topological order:1 2 3 5 4
