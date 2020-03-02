@@ -1,0 +1,27 @@
+Enter no. of elements:8
+
+Enter 8 elements:
+29
+11
+2
+56
+73
+19
+04
+55
+
+Sorted array is 
+
+2 4 11 19 29 55 56 73 
+
+ no of counts:23
+
+
+size	asc	desc	random
+
+16	61	54	59
+32	150	136	147
+64	367	330	360
+128	864	780	834
+256	1985	1815	1919
+512	4509	4121	4341
