@@ -1,0 +1,11 @@
+Enter the text:iamharish
+Enter pattern:hari
+Pattern found at position 4
+
+Enter the text:aaaaaaaaaaaab
+Enter pattern:ab
+Pattern found at position 12
+
+Enter the text:rvcollege             
+Enter pattern:rv
+Pattern found at position 1
