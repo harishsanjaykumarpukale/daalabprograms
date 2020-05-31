@@ -1,60 +1,66 @@
 #include<stdio.h>
-#include<stdlib.h>
+#define INFINITY 999
 
-void prims(int g[20][20], int n)
-{
-	int vt[20],v[20],e[20],min,u1,v1;
-	int ne=1,i,j,cost=0;
-	vt[0]=1;
-	for (i=1;i<n;i++)
-	{
-		vt[i]=0;
+void prims(int n,int cost[10][10],int source){
+	int v[10]; // keeps track to nodes visited and not
+       	int d[10]; // keeps latest shortest distance from source
+        int i, j; //index variables
+        int vertex[10]; //keeps track of nearest node to spanning tree
+        int u, least, sum=0;
+
+	//1. Initialisation
+        for(i=1;i<=n;i++){
+		v[i] = 0; //initialially none of the nodes are visited
+		d[i] = cost[source][i]; //distance from source to ith node
+		vertex[i] = source; //nearest node to spanning tree
 	}
-	v[0]=0;
-	for (i=1;i<n;i++)
-	{
-		v[i]=1;
-	}
-	printf("Minimum spanning tree edges:\n");
-	while (ne<n)
-	{
-		min=999;
-		for (i=0;i<n;i++)
-		{
-			for (j=0;j<n;j++)
-			{
-				if (g[i][j]<min)
-				{
-					if (i!=j && vt[i]==1 && v[j]==1)
-					{
-						min=g[i][j];
-						u1=i;
-						v1=j;
-					}
-				}
+	
+	v[source] = 1; //mark source node as visited
+
+	//2. n iteration
+	for(i=1;i<n;i++){
+		least = INFINITY;
+
+		//2a) Find u and d(u) such that d(u) is least and it's not visited
+		for(j=1; j<=n; j++){
+			if(v[j] == 0 && d[j] < least){
+				least = d[j];
+				u = j;// store the node for further use of updating distances 
 			}
 		}
-		cost+=min;
-		vt[v1]=1;
-		v[v1]=0;
-		ne++;
-		printf("Edge from vertex %d to %d\n",u1+1,v1+1);
-		
-	}
-	printf("The weight of the minimum spanning tree is %d",cost);
-}
-int main()
-{
-	int n,g[20][20],i,j;
-	printf("Enter the no. of vertices:");
-	scanf("%d",&n);
-	printf("Enter the adjacency matrix:\n");
-	for (i=0;i<n;i++)
-	{
-		for (j=0;j<n;j++)
-		{
-			scanf("%d",&g[i][j]);
+
+		//2b) mark node u as visited
+		v[u] = 1; // mark the vertex u (i.e vertex at least distance from tree ) as visted 
+		sum += d[u]; 
+		printf("%d --> %d = %d Total Sum = %d\n\n",vertex[u],u,d[u],sum);
+
+		//2c) update d[] array. Explore paths through node u.
+		for(j=1;j<=n;j++){
+			if(v[j] == 0 && d[j] >  cost[u][j]){
+				d[j] = cost[u][j]; //update the distance
+				vertex[j] = u;  // update nearest node
+			}
 		}
 	}
-	prims(g,n);
+
+	printf("Total cost: %d",sum);
 }
+
+
+int main(){
+	int n; //no. of nodes
+	int cost[10][10]; //Adjacency matrix of graph
+	int source; //source node
+	int i, j; //index variables
+	printf("Enter n (no. of nodes):");
+	scanf("%d", &n);
+	printf("Enter cost matrix:(use 999 as infinity)\n");
+	for(i=1; i<=n; i++)
+		for(j=1; j<=n; j++)
+			scanf("%d", &cost[i][j]);
+	printf("Enter Source: ");
+	scanf("%d", &source);
+	prims(n, cost, source);
+	return 0;
+}
+
