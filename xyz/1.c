@@ -1,3 +1,7 @@
+
+
+
+
 #include<stdio.h>
 int b[600],count=0;
 void merge(int a[],int low,int mid,int high){
